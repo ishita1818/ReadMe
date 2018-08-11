@@ -127,11 +127,12 @@ public class FloatingViewService extends Service implements View.OnClickListener
     }
 
     private void pauseVoice() {
-        Toast.makeText(this,"Voice starts",Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(this,"pauses!",Toast.LENGTH_SHORT).show();
     }
 
     private void startVoice() {
-        Toast.makeText(this,"pauses!",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Voice starts",Toast.LENGTH_SHORT).show();
     }
 
 }
