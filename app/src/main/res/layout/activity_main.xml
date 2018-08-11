@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/colorAccent">
 
     <Button
         android:layout_width="wrap_content"
@@ -14,8 +15,8 @@
         android:gravity="center"
         android:layout_centerInParent="true"
         android:text="Launch Reader"
-        android:textColor="@color/colorPrimary"
-        android:background="@color/colorAccent"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
         android:id="@+id/launch_button"
         android:height="8dp"/>
 
