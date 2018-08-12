@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.transition.Visibility;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -42,7 +44,9 @@ public class FloatingViewService extends Service implements View.OnClickListener
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSLUCENT);
 
-
+        params.gravity = Gravity.TOP | Gravity.LEFT;        //Initially view will be added to top-left corner
+        params.x = 0;
+        params.y = 100;
         //getting windows services and adding the floating view to it
         mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         mWindowManager.addView(mFloatingView, params);
@@ -77,8 +81,21 @@ public class FloatingViewService extends Service implements View.OnClickListener
 
                     case MotionEvent.ACTION_UP:
                         //when the drag is ended switching the state of the widget
-                        collapsedView.setVisibility(View.GONE);
-                        expandedView.setVisibility(View.VISIBLE);
+                        int Xdiff = (int) (event.getRawX() - initialTouchX);
+                        int Ydiff = (int) (event.getRawY() - initialTouchY);
+
+
+                        //The check for Xdiff <10 && YDiff< 10 because sometime elements moves a little while clicking.
+                        //So that is click event.
+                        if (Xdiff < 10 && Ydiff < 10) {
+                            if (collapsedView.getVisibility()== View.VISIBLE) {
+                                //When user clicks on the image view of the collapsed layout,
+                                //visibility of the collapsed layout will be changed to "View.GONE"
+                                //and expanded view will become visible.
+                                collapsedView.setVisibility(View.GONE);
+                                expandedView.setVisibility(View.VISIBLE);
+                            }
+                        }
                         return true;
 
                     case MotionEvent.ACTION_MOVE:
