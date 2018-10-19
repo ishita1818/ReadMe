@@ -6,6 +6,7 @@ import android.graphics.PixelFormat;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.transition.Visibility;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -103,6 +104,7 @@ public class FloatingViewService extends Service implements View.OnClickListener
                         params.x = initialX + (int) (event.getRawX() - initialTouchX);
                         params.y = initialY + (int) (event.getRawY() - initialTouchY);
                         mWindowManager.updateViewLayout(mFloatingView, params);
+                        Log.v("Motion","Üser Moves");
                         return true;
                 }
                 return false;
