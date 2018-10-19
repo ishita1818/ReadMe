@@ -1,3 +1,5 @@
+package com.ishitasharma18.readme;
+
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Rect;

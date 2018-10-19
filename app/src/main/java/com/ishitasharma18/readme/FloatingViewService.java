@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import java.io.File;
+
 public class FloatingViewService extends Service implements View.OnClickListener{
 
     private WindowManager mWindowManager;
@@ -152,6 +154,30 @@ public class FloatingViewService extends Service implements View.OnClickListener
 
     private void startVoice() {
         Toast.makeText(this,"Voice starts",Toast.LENGTH_SHORT).show();
+    }
+    private void shareScreen() {
+        try {
+
+            File cacheDir = new File(
+                    android.os.Environment.getExternalStorageDirectory(),
+                    "devdeeds");
+
+            if (!cacheDir.exists()) {
+                cacheDir.mkdirs();
+            }
+
+            String path = new File(
+                    android.os.Environment.getExternalStorageDirectory(),
+                    "devdeeds") + "/screenshot.jpg";
+
+            Utils.savePic(Utils.takeScreenShot(MainActivity.class), path);
+
+            Toast.makeText(getApplicationContext(), "Screenshot Saved", Toast.LENGTH_SHORT).show();
+
+
+        } catch (NullPointerException ignored) {
+            ignored.printStackTrace();
+        }
     }
 
 }
